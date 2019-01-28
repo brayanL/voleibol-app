@@ -1,0 +1,6 @@
+{
+  "extends": "eslint-config-rallycoding",
+  "rules": {
+    "max-len": 0
+  }
+}  
