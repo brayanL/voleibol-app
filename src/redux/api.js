@@ -5,7 +5,7 @@ import axios from 'axios';
  * and Interceptors.
  * */
 const api = axios.create({
-    baseURL: 'http://192.168.1.3:8000/game/',
+    baseURL: 'https://voleibol.herokuapp.com/game/',
     timeout: 10000,
   });
 
