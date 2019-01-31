@@ -6,12 +6,26 @@ import { Container, Content, Text, Segment, Button } from 'native-base';
 import { HeaderNav } from '../../main/components/HeaderNav';
 import { SCREEN_WIDTH, TITLE_APP } from '../../../util/Constants';
 import GlobalStyle from '../../../util/GlobalStyle';
-import { addAnnotation } from '../actions';
+import { addAnnotation, saveSetGame } from '../actions';
+import GameSetModal from './GameSetModal';
+import { showGameSetModal } from '../actions/modal_actions';
 
 class MatchScreen extends Component {
   static navigationOptions = HeaderNav({
     title: TITLE_APP, color: '#ffff'
   });
+
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('prevProps:', prevProps);
+    console.log('prevState:', prevState);
+    if (prevProps.finish_set !== this.props.annotationsReducer.finish_set) {
+      if (this.props.annotationsReducer.finish_set) {
+        console.log('SaveSetGame Called');
+        this.props.saveSetGame();
+      }
+    }
+  }
 
   /**
    * Add points to the team you scored.
@@ -23,12 +37,16 @@ class MatchScreen extends Component {
 
   render() {
     const gameData = this.props.annotationsReducer;
-    console.log('Another Screen: ',
-        this.props.annotationsReducer,
-        this.props.startGameReducer);
+    console.log('Another Screen: ', this.props.annotationsReducer);
     return (
         <Container>
           <Content padder>
+            <GameSetModal />
+            <View style={styles.mainContainerStyle}>
+              <View style={styles.headerStyle}>
+                <Text>SET ACTUAL: {this.props.annotationsReducer.set}</Text>
+              </View>
+            </View>
             <View style={styles.mainContainerStyle}>
               <View style={styles.headerStyle}>
                 <Text>Marcador</Text>
@@ -48,8 +66,20 @@ class MatchScreen extends Component {
               </View>
               <View style={[styles.contentStyle, GlobalStyle.centerView]}>
                 <Segment>
-                  <Button style={{ width: SCREEN_WIDTH * 0.45 }} first active={this.props.annotationsReducer.teams[0].service}><Text>{gameData.teams[0].name}</Text></Button>
-                  <Button style={{ width: SCREEN_WIDTH * 0.45 }} last active={this.props.annotationsReducer.teams[1].service}><Text>{gameData.teams[1].name}</Text></Button>
+                  <Button
+                      style={{ width: SCREEN_WIDTH * 0.45 }}
+                      first
+                      active={this.props.annotationsReducer.teams[0].service}
+                  >
+                    <Text>{gameData.teams[0].name}</Text>
+                  </Button>
+                  <Button
+                      style={{ width: SCREEN_WIDTH * 0.45 }}
+                      last
+                      active={this.props.annotationsReducer.teams[1].service}
+                  >
+                    <Text>{gameData.teams[1].name}</Text>
+                  </Button>
                 </Segment>
               </View>
             </View>
@@ -79,10 +109,10 @@ class MatchScreen extends Component {
     );
   }
 }
-const mapStateToProps = ({ startGameReducer, annotationsReducer }) =>
-    ({ startGameReducer, annotationsReducer });
+const mapStateToProps = ({ startGameReducer, annotationsReducer, showGameSetModalReducer }) =>
+    ({ startGameReducer, annotationsReducer, showGameSetModalReducer });
 
-export default connect(mapStateToProps, { addAnnotation })(MatchScreen);
+export default connect(mapStateToProps, { addAnnotation, showGameSetModal, saveSetGame })(MatchScreen);
 
 const styles = {
   mainContainerStyle: {

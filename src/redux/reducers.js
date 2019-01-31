@@ -2,6 +2,7 @@
 import { combineReducers } from 'redux';
 import startGameReducer from '../apps/main/reducers/start_game_reducer';
 import annotationsReducer from '../apps/match/reducers';
+import showGameSetModalReducer from '../apps/match/reducers/modal_reducer';
 
 export const RESET_STATE = 'RESET_STATE';
 
@@ -10,7 +11,8 @@ export const RESET_STATE = 'RESET_STATE';
  * */
 const appReducer = combineReducers({
   startGameReducer,
-  annotationsReducer
+  annotationsReducer,
+  showGameSetModalReducer
 });
 
 /**

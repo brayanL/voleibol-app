@@ -5,7 +5,7 @@ import axios from 'axios';
  * and Interceptors.
  * */
 const api = axios.create({
-    baseURL: 'http://192.168.1.7:8000/start-game/',
+    baseURL: 'http://192.168.1.3:8000/game/',
     timeout: 10000,
   });
 
