@@ -10,6 +10,8 @@ If you want run localy this project, is preferable to use a mac. Follow the next
 
 
 ScreenShots.
+
+
 ![](src/assets/screenshots/team_register.png)
 ![](src/assets/screenshots/match.png)
 ![](src/assets/screenshots/set_winner.png)
