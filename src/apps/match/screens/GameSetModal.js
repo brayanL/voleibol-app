@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, View } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Content, Button, Text, Footer, FooterTab } from 'native-base';
+import { Container, Content, Button, Text } from 'native-base';
 
 import { closeGameSetModal } from '../actions/modal_actions';
 import GlobalStyle from '../../../util/GlobalStyle';
@@ -37,13 +37,9 @@ class GameSetModal extends Component {
                       <Text style={styles.winnerTextStyle}>{this.props.annotationsReducer.winner_team_name}</Text>
                     </View>
                   </Content>
-                  <Footer style={{ height: 20 }}>
-                    <FooterTab>
-                      <Button full onPress={() => this.props.closeGameSetModal()}>
-                        <Text>Cerrar</Text>
-                      </Button>
-                    </FooterTab>
-                  </Footer>
+                  <Button full light onPress={() => this.props.closeGameSetModal()}>
+                    <Text>Cerrar</Text>
+                  </Button>
                 </Container>
               </View>
             </View>
@@ -66,7 +62,7 @@ const styles = {
   },
   containerStyle: {
     flex: 1,
-    maxHeight: SCREEN_HEIGHT * 0.25,
+    maxHeight: SCREEN_HEIGHT * 0.3,
     width: SCREEN_WIDTH * 0.8,
     backgroundColor: 'white',
     borderRadius: 15

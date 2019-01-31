@@ -16,14 +16,13 @@ public class MainActivity extends ReactActivity {
         return "voleibolapp";
     }
 
-     @Override
-     protected ReactActivityDelegate createReactActivityDelegate() {
+    @Override
+    protected ReactActivityDelegate createReactActivityDelegate() {
         return new ReactActivityDelegate(this, getMainComponentName()) {
             @Override
             protected ReactRootView createRootView() {
                 return new RNGestureHandlerEnabledRootView(MainActivity.this);
-                }
-            };
-        }
-     }
+            }
+        };
+    }
 }
